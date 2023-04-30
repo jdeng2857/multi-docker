@@ -3,20 +3,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t jdeng2857/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t jer2857/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true jdeng2857/react-test npm test -- --coverage
+  - docker run -e CI=true jer2857/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t jdeng2857/multi-client ./client
-  - docker build -t jdeng2857/multi-nginx ./nginx
-  - docker build -t jdeng2857/multi-server ./server
-  - docker build -t jdeng2857/multi-worker ./worker
+  - docker build -t jer2857/multi-client ./client
+  - docker build -t jer2857/multi-nginx ./nginx
+  - docker build -t jer2857/multi-server ./server
+  - docker build -t jer2857/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Push images to docker hub
-  - docker push jdeng2857/multi-client
-  - docker push jdeng2857/multi-nginx
-  - docker push jdeng2857/multi-server
-  - docker push jdeng2857/multi-worker
+  - docker push jer2857/multi-client
+  - docker push jer2857/multi-nginx
+  - docker push jer2857/multi-server
+  - docker push jer2857/multi-worker
